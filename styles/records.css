@@ -1,0 +1,12 @@
+.fondo_tabla {
+  background-color: aliceblue;
+}
+
+.centered-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This will make the div take up the full height of the viewport */
+  background-color: white;
+  border-radius: 5%;
+}

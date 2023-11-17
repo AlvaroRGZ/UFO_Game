@@ -1,0 +1,19 @@
+body {
+  background-color: #a8e5f7;
+}
+.navbar {
+  background-color: #219DC7;
+}
+.navbar-nav {
+  margin-left: auto;
+}
+.navbar-nav .nav-item {
+  margin-right: 15px;
+}
+.navbar-nav .nav-item .nav-link {
+  color: #F5FFFC;
+}
+.central-element {
+  text-align: center;
+  margin-top: 50px;
+}

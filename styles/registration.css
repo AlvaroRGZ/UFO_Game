@@ -1,0 +1,7 @@
+.form-container {
+  background-color: #69DDFF;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25vh auto; /* Centrar verticalmente */
+  width: 75%; /* Ancho del contenedor */
+}
