@@ -1,8 +1,21 @@
+
 export default class Missile {
   constructor() {
     this.element = document.getElementById('missile');
     this.launched = false;
-    this.launchingPID = null;
+    this.game = null;
+
+    //style="position:absolute; left:300px; bottom:0px; height:70px; width:40px; z-index:10"
+    this.element.style.position = 'absolute';
+    this.element.style.left = 300 + 'px';
+    this.element.style.bottom = 0 + 'px';
+    this.element.style.height = 70 + 'px';
+    this.element.style.width = 40 + 'px';
+    this.element.style.zIndex = 10;
+  }
+
+  setGame(game) {
+    this.game = game;
   }
 
   move(vstep, uLimit) {
@@ -11,6 +24,7 @@ export default class Missile {
     if (displacement < uLimit) {
       this.element.style.bottom = displacement + 'px';
     } else {
+      this.game.registerMissedShot();
       this.resetPosition();
     }
   }
@@ -32,22 +46,26 @@ export default class Missile {
   resetPosition() {
     this.element.style.bottom = '0px';
     this.markAsNotLaunched();
+    this.game.killLaunchingPid()
   }
 
   checkForHit(ufo) {
     const hpos_ufo = parseInt(ufo.element.style.left);
-    const vpos_ufo = parseInt(ufo.element.style.top);
+    const vpos_ufo = parseInt(ufo.element.style.bottom);
     const width_ufo = ufo.width;
-    const height_ufo = ufo.element.offsetHeight;
     const vpos_m = parseInt(this.element.style.bottom);
     const hpos_m = parseInt(this.element.style.left);
     const width_m = parseInt(this.element.style.width);
     const height_m = parseInt(this.element.style.height);
-
+  
     return (
-        false
+      vpos_m + height_m <= vpos_ufo + width_ufo &&
+      vpos_m + width_m >= vpos_ufo &&
+      hpos_m + width_m / 2 >= hpos_ufo &&
+      hpos_m + width_m / 2 <= hpos_ufo + width_ufo
     );
-}
+  }
+  
 
   isLaunched() {
     return this.launched;

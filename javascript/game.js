@@ -1,8 +1,12 @@
 import Missile from './missile.js';
 import UFO from './ufo.js';
+import LocalStorageManager from './LocalStorageManager.js';
 
-export class Game {
+export default class Game {
   constructor() {
+    this.localStorageManager = new LocalStorageManager();
+    this.numbersOfUFOs = this.localStorageManager.getNumberOfUFOs();
+    this.totalTime = this.localStorageManager.getTime();
     this.missile = null;
     this.ufos = [];
     this.ufoDirections = [];
@@ -16,11 +20,18 @@ export class Game {
     setInterval(() => this.moveUFOs(), 25);
 
     this.missile = new Missile();
+    this.missile.setGame(this);
     this.registerKeyDownListeners();
+    this.startTimeLeftCounter();
+  }
+
+  killLaunchingPid() {
+    clearInterval(this.pid);
+    this.pid = null;
   }
 
   createUFOs() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < this.numbersOfUFOs; i++) {
       const ufo = new UFO(i);
       this.ufos.push(ufo);
       this.ufoDirections.push(Math.random() < 0.5 ? -1 : 1);
@@ -46,14 +57,10 @@ export class Game {
   checkForHit() {
     for (let ufo of this.ufos) {
       if (this.missile.checkForHit(ufo)) {
-        clearInterval(this.pid);
-        this.missile.resetPosition();
-        this.score += 100;
-        document.getElementById("points").innerHTML = this.score;
+        this.registerUFODown();
         ufo.explode();
         setTimeout(() => ufo.reset(), 1000);
-      } else {
-        this.score -= 25;
+        this.missile.resetPosition();
       }
     }
   }
@@ -94,9 +101,85 @@ export class Game {
       }
     }
   }
+
+  startTimeLeftCounter(){
+    let time = this.totalTime;
+    document.getElementById("timeLeft").innerHTML = time;
+    let timePID = setInterval(() => {
+      if (time === 0) {
+        clearInterval(timePID);
+        this.displayEndOfTheGame();
+      } else {
+        time = parseInt(document.getElementById("timeLeft").innerHTML) - 1;
+        document.getElementById("timeLeft").innerHTML = time;
+      }
+    }
+    , 1000);
+  }
+
+  displayTutorial() {
+    Swal.fire({
+      title: 'UFO Game Tutorial',
+      html: `
+      <div>
+        <p>Welcome to the UFO Game! Here's a quick guide to get you started:</p>
+        <ul>
+          <li>Use the <strong>arrow keys</strong> to move the missile <strong>left and right</strong>.</li>
+          <li>Press the <strong>space bar</strong> to launch the missile.</li>
+        </ul>
+        <p>Shoot down the UFOs and score points before the time runs out!</p>
+      <div>
+      `,
+      icon: 'info',
+      confirmButtonText: 'Start'
+    })
+  }
+
+  displayEndOfTheGame() {
+    Swal.fire({
+      title: "<strong>Game over!</strong>",
+      html: `
+      <p>Score: <b>${this.score}</b></p>
+      <p>UFOs Used: <b>${this.numbersOfUFOs}</b></p>
+      <p>Penalties: <b>-${this.calculatePenalties()}</b></p>
+      <p>Final Score: <b>${this.calculateFinalScore()}</b></p>
+      `,
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: `
+        <i class="fa fa-thumbs-up"></i> Great!
+      `,
+      confirmButtonAriaLabel: "Thumbs up, great!",
+      cancelButtonText: `
+        <i class="fa fa-thumbs-down"></i>
+      `,
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+  }
+  calculateFinalScore() {
+    let factor = this.totalTime / 60;
+    let penalty = this.calculatePenalties();
+    return (this.score / factor) - penalty; 
+  }
+
+  calculatePenalties() {
+    return 50 * (this.numbersOfUFOs - 1);
+  }
+
+  registerUFODown() {
+    this.score += 100;
+    document.getElementById("score").innerHTML = this.score;
+  }
+
+  registerMissedShot() {
+    this.score -= 25;
+    document.getElementById("score").innerHTML = this.score;
+  }
 }
 
 window.onload = function () {
   var game = new Game();
+  game.displayTutorial();
   game.start();
 };

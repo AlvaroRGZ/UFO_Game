@@ -23,12 +23,7 @@ function newImage(){
         uLimit = window.innerHeight,
         newleft = parseInt(Math.random()*rLimit),
         newbottom = parseInt(Math.random()*uLimit);
-    newelement = document.createElement('img');
-    newelement.setAttribute('src', 'ufo.png');
-    newelement.setAttribute('class', 'setOfUfos');
-    document.getElementById('container').appendChild(newelement);
-    newelement.style.left = newleft+'px';
-    newelement.style.bottom =  newbottom+'px';
+    
 	score = score + 1;
 	document.getElementById('points').innerHTML = score;
 }
