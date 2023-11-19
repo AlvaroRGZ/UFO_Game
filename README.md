@@ -1,2 +1,3 @@
 # UFO_Game
-cambiar commons por styles
+
+* Author: Álvaro Rodríguez Gómez

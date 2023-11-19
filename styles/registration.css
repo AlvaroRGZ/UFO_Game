@@ -2,12 +2,12 @@
   background-color: #69DDFF;
   padding: 20px;
   border-radius: 10px;
-  margin: 25vh auto; /* Centrar verticalmente */
-  width: 75%; /* Ancho del contenedor */
+  margin: 25vh auto;
+  width: 75%;
 }
 
 .background {
-  background-image: url('../media/images/preferences.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+  background-image: url('../media/images/preferences.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@
 }
 
 .form-container {
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background to improve readability */
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
 }
