@@ -112,6 +112,10 @@ export default class Game {
       } else {
         time = parseInt(document.getElementById("timeLeft").innerHTML) - 1;
         document.getElementById("timeLeft").innerHTML = time;
+
+        if (time === 15) {
+          document.getElementById("timeLeft").style.color = 'red';
+        }
       }
     }
     , 1000);
@@ -139,24 +143,32 @@ export default class Game {
     Swal.fire({
       title: "<strong>Game over!</strong>",
       html: `
-      <p>Score: <b>${this.score}</b></p>
-      <p>UFOs Used: <b>${this.numbersOfUFOs}</b></p>
-      <p>Penalties: <b>-${this.calculatePenalties()}</b></p>
-      <p>Final Score: <b>${this.calculateFinalScore()}</b></p>
+        <div>
+          <p>Score: <b>${this.score}</b></p>
+          <p>UFOs Used: <b>${this.numbersOfUFOs}</b></p>
+          <p>Penalties: <b>-${this.calculatePenalties()}</b></p>
+          <p>Final Score: <b>${this.calculateFinalScore()}</b></p>
+        </div>
       `,
-      showCloseButton: true,
+      showDenyButton: true,
       showCancelButton: true,
-      focusConfirm: false,
-      confirmButtonText: `
-        <i class="fa fa-thumbs-up"></i> Great!
-      `,
-      confirmButtonAriaLabel: "Thumbs up, great!",
-      cancelButtonText: `
-        <i class="fa fa-thumbs-down"></i>
-      `,
-      cancelButtonAriaLabel: "Thumbs down"
+      confirmButtonText: "Play again",
+      denyButtonText: `See records`,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      } else if (result.isDenied) {
+        window.location.href = 'records.html';
+      } else {
+        window.location.href = 'presentation.html';
+      }
     });
   }
+
   calculateFinalScore() {
     let factor = this.totalTime / 60;
     let penalty = this.calculatePenalties();

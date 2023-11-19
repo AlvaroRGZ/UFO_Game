@@ -1,3 +1,11 @@
+body {
+  background-image: url('../media/gifs/background_inmerse.gif'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
 .fondo_tabla {
   background-color: aliceblue;
 }
@@ -6,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* This will make the div take up the full height of the viewport */
+  height: 100vh;
   background-color: white;
   border-radius: 5%;
 }

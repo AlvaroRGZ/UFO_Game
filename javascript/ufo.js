@@ -15,9 +15,8 @@ export default class UFO {
     this.element.src = '../media/images/ufo.png';
     this.element.style.position = 'absolute';
     this.element.style.left = randomLeft + 'px';
-    this.element.style.top = this.numeralID * this.width + 'px';
+    this.element.style.top = 60 + this.numeralID * this.width + 'px';
     this.element.style.width = this.width + 'px';
-    this.element.style.bottom = '60px';
     document.getElementById("UFO_space").appendChild(this.element);
   }
 
