@@ -7,45 +7,21 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/registration.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="presentation.html">UFO Game</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="presentation.html">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="preferences.html">Preferences</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="game.html">Play</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="records.html">Records</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="registration.html">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
-      </li>
-    </ul>
-  </nav>
+  <div id="common-navbar"></div>
   <div class="background">
     <!-- Central Element - Preferences Form -->
     <div class="form-container col-3">
       <h1>Preferences</h1>
       <form>
         <div class="form-group">
-          <label for="numUFOs">Number of UFOs</label>
-          <input type="number" class="form-control" id="numUFOs" placeholder="Enter number of UFOs" min="1" max="10" required>
+          <label for="numUFOs">Number of UFOs (1 - 5)</label>
+          <input type="number" class="form-control" id="numUFOs" placeholder="Enter number of UFOs" min="1" max="5" required>
         </div>
         <div class="form-group">
-          <label for="time">Time (in steps of 60 from 60 to 180)</label>
+          <label for="time">Time (60 , 120 or 180 seconds)</label>
           <input type="number" class="form-control" id="time" placeholder="Enter time" min="60" max="180" step="60" value="60" required>
         </div>
         <button id="btnSave" class="btn btn-primary">Save Preferences</button>
@@ -53,9 +29,10 @@
     </div>
   </div>
   <!-- Bootstrap JS and Popper.js (Optional) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UoP+J4e2LXR8251ZLZlqf7Pq6I5YxuKTf5+q1zZU6wDc5KcJvPZl+r/46nt7In1E" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="module" src="../javascript/preferences.js"></script>
+  
 </body>
 </html>

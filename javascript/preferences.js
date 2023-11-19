@@ -21,6 +21,7 @@ export default class PreferencesManager {
 }
 
 window.onload = function () {
+  $("#common-navbar").load("menu.html");
   let preferencesManager = new PreferencesManager();
   preferencesManager.loadSavedPreferences();
   document.getElementById('btnSave').onclick = (event) => preferencesManager.savePreferences(event);

@@ -17,5 +17,6 @@ function dologin(){
 }
 
 window.onload = function(){
+  $("#common-navbar").load("menu.html");
   document.getElementById('info').onclick = dologin;
 }

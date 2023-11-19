@@ -9,43 +9,21 @@
   <link rel="stylesheet" href="../styles/common.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="presentation.html">UFO Game</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="presentation.html">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="preferences.html">Preferences</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="game.html">Play</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="records.html">Records</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="registration.html">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
-      </li>
-    </ul>
-  </nav>
+  <div id="common-navbar"></div>
   <div class="background">
     <!-- Central Element -->
     <div class="central-element">
       <h1>Game Title</h1>
-      <img src="../media/images/ufo.png" alt="Game Image" class="img-fluid">
+      <img src="../media/images/ufo.png">
       <p>Some descriptive text about the game.</p>
     </div>
   </div>
   <!-- Bootstrap JS and Popper.js (Optional) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UoP+J4e2LXR8251ZLZlqf7Pq6I5YxuKTf5+q1zZU6wDc5KcJvPZl+r/46nt7In1E" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>window.onload = function () {
+    $("#common-navbar").load("menu.html");
+  }</script>
 </body>
 </html>

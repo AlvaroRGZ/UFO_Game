@@ -42,6 +42,7 @@ function loadRecords(){
 }
 
 window.onload = function(){
+  $("#common-navbar").load("menu.html");
   loadRecords();
 }
 
